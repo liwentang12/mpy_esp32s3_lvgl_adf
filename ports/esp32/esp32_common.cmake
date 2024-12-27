@@ -134,7 +134,54 @@ list(APPEND IDF_COMPONENTS
     spi_flash
     ulp
     vfs
+    audio_pipeline audio_sal driver esp-adf-libs esp_http_client boards
+    esp_peripherals
+    audio_board
+    display_service
+    esp_dispatcher
+    esp-sr
+    audio_hal
 )
+#lwt added audio_pipeline audio_sal driver esp-adf-libs esp_http_client boards
+#lwt added
+set(lwt_adf_srcs
+    ${ADF_BOARD_INIT_SRC}
+    ${ADF_BOARD_CODEC_SRC}
+    ${ADF_BOARD_DIR}/board_pins_config.c
+    ${ADF_COMPS}/audio_hal/audio_hal.c
+    ${ADF_COMPS}/audio_hal/audio_volume.c
+    ${ADF_COMPS}/audio_stream/http_stream.c
+    ${ADF_COMPS}/audio_stream/i2s_stream_idf5.c
+    ${ADF_COMPS}/audio_stream/raw_stream.c
+    ${ADF_COMPS}/audio_stream/http_playlist.c
+    ${ADF_COMPS}/audio_stream/lib/gzip/gzip_miniz.c
+    ${ADF_COMPS}/audio_stream/lib/hls/hls_parse.c
+    ${ADF_COMPS}/audio_stream/lib/hls/hls_playlist.c
+    ${ADF_COMPS}/audio_stream/lib/hls/join_path.c
+    ${ADF_COMPS}/audio_stream/lib/hls/line_reader.c
+    ${ADF_COMPS}/esp_peripherals/driver/i2c_bus/i2c_bus_adf.c
+)
+
+set(lwt_adf_includes
+    ${ADF_BOARD_DIR}
+    ${ADF_BOARD_CODEC_INC}
+    ${ADF_COMPS}/audio_board/include
+    ${ADF_COMPS}/audio_hal/include
+    ${ADF_COMPS}/audio_hal/driver/include
+    ${ADF_COMPS}/audio_stream/include
+    ${ADF_COMPS}/audio_stream/lib/gzip/include
+    ${ADF_COMPS}/audio_stream/lib/hls/include
+    ${ADF_COMPS}/esp_peripherals/include
+    ${ADF_COMPS}/display_service/include
+    ${ADF_COMPS}/esp_dispatcher/include
+    ${ADF_COMPS}/esp_peripherals/driver/i2c_bus
+    $ENV{ADF_PATH}/micropython_adf/boards/include
+)
+
+message(WARNING "lwt_adf_srcs: ${lwt_adf_srcs}")
+message(WARNING "lwt_adf_includes: ${lwt_adf_includes}")
+
+#lwt added end
 
 # Register the main IDF component.
 idf_component_register(
@@ -146,12 +193,14 @@ idf_component_register(
         ${MICROPY_SOURCE_DRIVERS}
         ${MICROPY_SOURCE_PORT}
         ${MICROPY_SOURCE_BOARD}
+        ${lwt_adf_srcs}
     INCLUDE_DIRS
         ${MICROPY_INC_CORE}
         ${MICROPY_INC_USERMOD}
         ${MICROPY_PORT_DIR}
         ${MICROPY_BOARD_DIR}
         ${CMAKE_BINARY_DIR}
+        ${lwt_adf_includes}
     LDFRAGMENTS
         linker.lf
     REQUIRES

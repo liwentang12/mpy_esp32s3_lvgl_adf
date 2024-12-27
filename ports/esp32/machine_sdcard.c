@@ -37,6 +37,7 @@
 #include "driver/sdspi_host.h"
 #include "sdmmc_cmd.h"
 #include "esp_log.h"
+#include "soc/soc_caps.h"
 
 #define DEBUG 0
 #if DEBUG
@@ -178,6 +179,18 @@ static mp_obj_t machine_sdcard_make_new(const mp_obj_type_t *type, size_t n_args
         ARG_sck,
         ARG_cs,
         ARG_freq,
+#ifdef SOC_SDMMC_USE_GPIO_MATRIX
+        ARG_clk,
+        ARG_cmd,
+        ARG_d0,
+        ARG_d1,
+        ARG_d2,
+        ARG_d3,
+        ARG_d4,
+        ARG_d5,
+        ARG_d6,
+        ARG_d7,
+#endif /*SOC_SDMMC_USE_GPIO_MATRIX*/
     };
     static const mp_arg_t allowed_args[] = {
         { MP_QSTR_slot,     MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = 1} },
@@ -191,6 +204,18 @@ static mp_obj_t machine_sdcard_make_new(const mp_obj_type_t *type, size_t n_args
         { MP_QSTR_cs,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
         // freq is valid for both SPI and SDMMC interfaces
         { MP_QSTR_freq,     MP_ARG_KW_ONLY | MP_ARG_INT, {.u_int = 20000000} },
+#ifdef SOC_SDMMC_USE_GPIO_MATRIX
+        { MP_QSTR_clk,      MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_cmd,      MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_d0,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_d1,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_d2,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_d3,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_d4,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_d5,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_d6,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+        { MP_QSTR_d7,       MP_ARG_KW_ONLY | MP_ARG_OBJ, {.u_obj = mp_const_none} },
+#endif /*SOC_SDMMC_USE_GPIO_MATRIX*/
     };
     mp_arg_val_t arg_vals[MP_ARRAY_SIZE(allowed_args)];
     mp_map_t kw_args;
@@ -292,6 +317,18 @@ static mp_obj_t machine_sdcard_make_new(const mp_obj_type_t *type, size_t n_args
         // SD/MMC interface
         DEBUG_printf("  Setting up SDMMC slot configuration");
         sdmmc_slot_config_t slot_config = SDMMC_SLOT_CONFIG_DEFAULT();
+#ifdef SOC_SDMMC_USE_GPIO_MATRIX
+        SET_CONFIG_PIN(slot_config, clk, ARG_clk);
+        SET_CONFIG_PIN(slot_config, cmd, ARG_cmd);
+        SET_CONFIG_PIN(slot_config, d0,  ARG_d0);
+        SET_CONFIG_PIN(slot_config, d1,  ARG_d1);
+        SET_CONFIG_PIN(slot_config, d2,  ARG_d2);
+        SET_CONFIG_PIN(slot_config, d3,  ARG_d3);
+        SET_CONFIG_PIN(slot_config, d4,  ARG_d4);
+        SET_CONFIG_PIN(slot_config, d5,  ARG_d5);
+        SET_CONFIG_PIN(slot_config, d6,  ARG_d6);
+        SET_CONFIG_PIN(slot_config, d7,  ARG_d7);
+#endif /*SOC_SDMMC_USE_GPIO_MATRIX*/
 
         // Stronger external pull-ups are still needed but apparently
         // it is a good idea to set the internal pull-ups anyway.
