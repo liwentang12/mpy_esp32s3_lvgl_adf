@@ -71,9 +71,6 @@
 [submodule "ztron/adf"]
 	path = ztron/adf
 	url = https://github.com/liwentang12/esp-adf-for-lvgl-mpy.git
-[submodule "ztron/st7789_mpy"]
-	path = ztron/st7789_mpy
-	url = https://github.com/russhughes/st7789_mpy.git
 [submodule "ztron/lvgl_esp32_mpy"]
 	path = ztron/lvgl_esp32_mpy
 	url = https://github.com/MathyV/lvgl_esp32_mpy.git
