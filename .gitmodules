@@ -70,7 +70,7 @@
 	url = https://github.com/arduino/arduino-lib-mpy.git
 [submodule "ztron/adf"]
 	path = ztron/adf
-	url = https://github.com/liwentang12/esp-adf-for-lvgl-mpy.git
+	url = git@github.com:liwentang12/esp-adf-for-lvgl-mpy.git
 [submodule "ztron/lvgl_esp32_mpy"]
 	path = ztron/lvgl_esp32_mpy
-	url = https://github.com/MathyV/lvgl_esp32_mpy.git
+	url = git@github.com:liwentang12/kovor2v3_lvgl_mpy.git

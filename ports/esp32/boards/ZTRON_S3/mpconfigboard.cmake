@@ -37,7 +37,9 @@ set(EXTRA_COMPONENT_DIRS
         $ENV{ADF_PATH}/components/audio_hal
         $ENV{ADF_PATH}/components/audio_board
         $ENV{ADF_PATH}/components/display_service
-        $ENV{ADF_PATH}/components/esp_dispatcher )
+        $ENV{ADF_PATH}/components/esp_dispatcher
+        $ENV{ADF_PATH}/examples/display/music_player/components/lcd_touch
+        )
 
 
 set(MICROPY_FROZEN_MANIFEST ${MICROPY_BOARD_DIR}/manifest.py)
