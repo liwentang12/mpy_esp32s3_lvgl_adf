@@ -1,8 +1,18 @@
-运行在esp32 s3 korvo2 v3上面的micropython,  集成了开发板自带的屏幕驱动(st7789)和触摸驱动(tt21100), 同时集成的esp-adf自带的micropython模块, 可以通过py脚本播音/录音.
-屏幕驱动来自([https://github.com/MathyV/lvgl_esp32_mpy)
-触摸驱动来自esp-adf (https://github.com/espressif/esp-adf/tree/master/examples/display/music_player/components/lcd_touch)
-声音模块来自esp-adf (https://github.com/espressif/esp-adf/tree/master/micropython_adf)
-示例代码: (https://github.com/liwentang12/mpy_esp32s3_lvgl_adf/blob/lv_adf/example.py)
+运行在esp32 s3 korvo2 v3上面的micropython,  集成了开发板自带的屏幕驱动(st7789)和触摸驱动(tt21100), 同时集成的esp-adf自带的micropython模块, 可以通过py脚本播音/录音.<br>
+屏幕驱动来自([https://github.com/MathyV/lvgl_esp32_mpy)<br>
+触摸驱动来自esp-adf (https://github.com/espressif/esp-adf/tree/master/examples/display/music_player/components/lcd_touch)<br>
+声音模块来自esp-adf (https://github.com/espressif/esp-adf/tree/master/micropython_adf)<br>
+示例代码: (https://github.com/liwentang12/mpy_esp32s3_lvgl_adf/blob/lv_adf/example.py)<br>
+
+编译:<br>
+  1.切换到lv_adf分支<br>
+  2.搭建ESP-idf开发环境, 检出v5.2.2后还需打上补丁 (https://github.com/liwentang12/mpy_esp32s3_lvgl_adf/blob/lv_adf/patchs/esp-idf.patch)<br>
+  3.1 get_idf <br>
+  3.2 make BOARD=ZTRON_S3 <br>
+版本:<br>
+  MicroPython: v1.23<br>
+  ESP-IDF: v5.2.2<br>
+
 
 ----------------------------------------------------------------------------------------------------------
 [![Unix CI badge](https://github.com/micropython/micropython/actions/workflows/ports_unix.yml/badge.svg)](https://github.com/micropython/micropython/actions?query=branch%3Amaster+event%3Apush) [![STM32 CI badge](https://github.com/micropython/micropython/actions/workflows/ports_stm32.yml/badge.svg)](https://github.com/micropython/micropython/actions?query=branch%3Amaster+event%3Apush) [![Docs CI badge](https://github.com/micropython/micropython/actions/workflows/docs.yml/badge.svg)](https://docs.micropython.org/) [![codecov](https://codecov.io/gh/micropython/micropython/branch/master/graph/badge.svg?token=I92PfD05sD)](https://codecov.io/gh/micropython/micropython)
