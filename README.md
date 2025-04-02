@@ -8,7 +8,7 @@
   1.切换到lv_adf分支<br>
   2.搭建ESP-idf开发环境, 检出v5.2.2后还需打上补丁 (https://github.com/liwentang12/mpy_esp32s3_lvgl_adf/blob/lv_adf/patchs/esp-idf.patch)<br>
   3.1 get_idf <br>
-  3.2 make BOARD=ZTRON_S3 <br>
+  3.2 make BOARD=Z T R O N_S3 <br>
 版本:<br>
   MicroPython: v1.23<br>
   ESP-IDF: v5.2.2<br>
